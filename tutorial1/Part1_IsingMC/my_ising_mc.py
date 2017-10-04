@@ -71,21 +71,21 @@ for i in range(N_spins):
     neighbours[i,3]=i-L+N_spins
 #end of for loop
 
-### Function to calculate the total energy of a given spin configuration###
 def getEnergy():
+''' Function to calculate the total energy of a given spin configuration. '''
   currEnergy = 0
   for i in range(N_spins):
     currEnergy += -J*( spins[i]*spins[neighbours[i,0]] + spins[i]*spins[neighbours[i,1]] )
   return currEnergy
 #end of getEnergy() function
 
-### Function to calculate the total magnetization ###
 def getMag():
+''' Function to calculate the total magnetization '''
   return np.sum(spins)
 #end of getMag() function
 
-### Function to perform one Monte Carlo sweep ###
 def sweep():
+''' Function to perform one Monte Carlo sweep '''
   #do one sweep (N_spins local updates):
   for i in range(N_spins):
     #randomly choose which spin to consider flipping:
@@ -102,8 +102,8 @@ def sweep():
   #end loop over i
 #end of sweep() function
 
-### Function to write the training/testing data to file: ###
 def writeConfigs(num,T):
+''' Function to write the training/testing data to file '''
   #determine whether the current configuration will be used for training or testing:
   if num < (train_frac*n_bins):
     file_x = file_xtrain
