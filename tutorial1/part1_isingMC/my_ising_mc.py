@@ -96,7 +96,7 @@ def sweep():
     for j in range(4):
       deltaE += 2*J*spins[site]*spins[neighbours[site,j]]
   
-    if (deltaE <= 0) or (random.random() < np.exp(-deltaE/T)):
+    if (deltaE <= 0) or (random.random() < np.exp(-deltaE/T)): #detailed balance condition
       #flip the spin:
       spins[site] = -spins[site]
   #end loop over i
