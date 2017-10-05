@@ -22,3 +22,15 @@ http://www.fulviofrisone.com/attachments/article/483/030818090032%20An%20Introdu
 Finally, chapter 7 here: 
 
 https://books.google.com.br/books?id=qiEUDAAAQBAJ&pg=PA172&lpg=PA172&dq=classical+z2+gauge+theory&source=bl&ots=0QOEOjmaNg&sig=Au4fBisVDppPOKOQ1OAKBI9TuQQ&hl=en&sa=X&redir_esc=y#v=onepage&q&f=false
+
+### FFNN for Ising model:
+https://arxiv.org/pdf/1605.01735.pdf
+
+### CNN:
+http://www.deeplearningbook.org/contents/convnets.html
+
+### RBM:
+
+http://image.diku.dk/igel/paper/AItRBM-proof.pdf
+
+http://scikit-learn.org/stable/modules/neural_networks_unsupervised.html#neural-networks-unsupervised
