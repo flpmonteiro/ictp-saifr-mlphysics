@@ -149,7 +149,7 @@ for T in T_list:
         mag = getMag()
         file_observables.write('%d \t %.8f \t %.8f \n' %(i, energy, mag))
 
-        # write the X, y data to file:
+        # write the x, y data to file:
         writeConfigs(i,T)
 
         if args.animate:
