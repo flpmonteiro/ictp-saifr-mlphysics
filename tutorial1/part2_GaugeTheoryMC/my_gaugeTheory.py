@@ -166,7 +166,7 @@ for T in T_list:
         if args.animate:
             # Display the current spin configuration:
             plt.clf()
-            plt.imshow( spins.reshape((L,L)), cmap=bw_cmap, norm=colors.BoundaryNorm([-1,0,    1], bw_cmap.N) )
+            plt.imshow( spins.reshape((2*L,L)), cmap=bw_cmap, norm=colors.BoundaryNorm([-1,0,    1], bw_cmap.N) )
             plt.xticks([])
             plt.yticks([])
             plt.title('%d x %d gauge Ising model, T = %.3f' %(L,L,T))
