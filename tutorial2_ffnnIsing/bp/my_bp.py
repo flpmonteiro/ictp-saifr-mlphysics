@@ -1,15 +1,26 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
-# activation function
+# activation functions:
 def sigmoid(x):
-  return 1. / (1. + np.exp(-x))
+    return 1. / (1. + np.exp(-x))
+
+def relu(x):
+    return np.maximum(0,x)
+
 # derivative of activation
 def d_sigmoid(x):
     return sigmoid(x)*(1.0-sigmoid(x))  
-def relu(x):
-    return np.maximum(0,x)
+
+def d_relu(x):
+    """
+    Return derivative of relu, which is equal to Heaviside' theta fucntion.
+    This derivative is undefined at the origin, thus we set it's value to be
+    d_relu(0) = 0
+    """
+    return np.heaviside(x,0)
+
 #def onehot(i):
 #    return np.zeros(N*K,K)[i]=1
 
@@ -28,11 +39,11 @@ X = np.zeros((N*K,D)) # matrix containing the dataset
 y = np.zeros(N*K, dtype='uint8') # labels
 # data generation
 for j in range(K):
-  ix = range(N*j,N*(j+1))
-  r = np.linspace(0.0,1,N) # radius
-  t = np.linspace(j*4,(j+1)*4,N) + np.random.randn(N)*0.2 # theta
-  X[ix] = np.c_[r*np.sin(t), r*np.cos(t)]
-  y[ix] = j
+    ix = range(N*j,N*(j+1))
+    r = np.linspace(0.0,1,N) # radius
+    t = np.linspace(j*4,(j+1)*4,N) + np.random.randn(N)*0.2 # theta
+    X[ix] = np.c_[r*np.cos(t), r*np.sin(t)]
+    y[ix] = j
 
 oneh=np.zeros((K*N,K))
 oneh[np.arange(K*N),y] = 1
@@ -53,57 +64,57 @@ W2 = 0.01 * np.random.randn(h,K) # Second layer weight matrix
 b2 = np.zeros((1,K)) # bias vector second layer
 
 # some hyperparameters
-step_size = 1.0 #e-0 training rate
-lamb = 1e-20
+step_size = 1.0 # e-0 training rate
+lamb = 0 # L2 regularization parameter
 
 # gradient descent loop
 num_examples = X.shape[0] # size of dataset
 for i in range(20000):
  
-  # forward pass 
-  z1=np.dot(X, W1) + b1 # z1
-  #a1 = sigmoid(z1)
-  a1 = np.maximum(0,z1)
-  z2 = np.dot(a1, W2) + b2 #(scores)
-  # Activation in the last layer is a softmax=compute the class probabilities
-  a2 = sigmoid(z2)
-  # average cross-entropy
-  eps=0.00000001
-  loss = -np.mean(np.sum( oneh*np.log(a2+eps) + (1.0-oneh)*np.log(1.0-a2+eps),axis=1 )) + 0.5*lamb*np.sum(W1*W1) + 0.5*lamb*np.sum(W2*W2)
-  
-  # print every 1000 iteration
-  if i % 1000 == 0:
-    print "iteration %d: loss %f" % (i, loss)
+    # forward pass 
+    z1=np.dot(X, W1) + b1 # z1
+    #a1 = sigmoid(z1)
+    a1 = relu(z1)
+    z2 = np.dot(a1, W2) + b2 #(scores)
+    # Activation in the last layer is a softmax=compute the class probabilities
+    a2 = sigmoid(z2)
+    # average cross-entropy
+    eps=0.00000001 # small constant to avoid log(0)
+    loss = -np.mean(np.sum( oneh*np.log(a2+eps) + (1.0-oneh)*np.log(1.0-a2+eps),axis=1 )) + 0.5*lamb*np.sum(W1*W1) + 0.5*lamb*np.sum(W2*W2)
+    
+    # print every 1000 iteration
+    if i % 1000 == 0:
+        print("iteration %d: loss %f" % (i, loss))
  
-  # BACKPROPAGATION 
-  # compute the gradient last layer (first compute the "error d2")
-  
-  d2 = (a2 - oneh)/num_examples
-  
-  # backpropate the gradient to the parameters
-  # first backprop into parameters W2 and b2
-  
-  dW2 = np.dot(a1.T, d2)
-  db2 = np.sum(d2, axis=0, keepdims=True)
+    # BACKPROPAGATION 
+    # compute the gradient last layer (first compute the "error d2")
+    
+    d2 = (a2 - oneh)/num_examples
+    
+    # backpropate the gradient to the parameters
+    # first backprop into parameters W2 and b2
+    
+    dW2 = np.dot(a1.T, d2)
+    db2 = np.sum(d2, axis=0, keepdims=True)
 
-  # next backprop the error d2 into hidden layer to get d1
-  #d1 = d_sigmoid(z1)*np.dot(d2, W2.T)
-  d1 = np.dot(d2, W2.T)
-  d1[a1 <= 0] = 0
+    # next backprop the error d2 into hidden layer to get d1
+    #d1 = d_sigmoid(z1)*np.dot(d2, W2.T)
+    d1 = d_relu(z1)*np.dot(d2, W2.T)
+    d1[a1 <= 0] = 0
 
 
-  # finally into W1,b1
-  dW1 = np.dot(X.T, d1)
-  db1 = np.sum(d1, axis=0, keepdims=True)
-  
-  dW1 += lamb*W1
-  dW2 += lamb*W2
-  
-  # perform a parameter update
-  W1 += -step_size * dW1
-  b1 += -step_size * db1
-  W2 += -step_size * dW2
-  b2 += -step_size * db2
+    # finally into W1,b1
+    dW1 = np.dot(X.T, d1)
+    db1 = np.sum(d1, axis=0, keepdims=True)
+    
+    dW1 += lamb*W1
+    dW2 += lamb*W2
+    
+    # perform a parameter update
+    W1 += -step_size * dW1
+    b1 += -step_size * db1
+    W2 += -step_size * dW2
+    b2 += -step_size * db2
 
 
 
@@ -113,7 +124,7 @@ a1 = relu(np.dot(X, W1) + b1)
 z2 = np.dot(a1, W2) + b2
 a2 = sigmoid(z2)
 predicted_class = np.argmax(a2, axis=1)
-print 'training accuracy: %.2f' % (np.mean(predicted_class == y))
+print('training accuracy: %.2f' % (np.mean(predicted_class == y)))
 
 # plot the resulting classifier
 h = 0.02
