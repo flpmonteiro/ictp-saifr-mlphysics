@@ -18,8 +18,8 @@ def _read32(bytestream):
 
 def extract_images(filename,lx):
     """Extract the images into a 4D uint8 numpy array [index, y, x, depth]."""
-    print 'Extracting', filename,'aaaaaa'
-    
+    print('Extracting', filename,'aaaaaa')
+
     #with gzip.open(filename) as bytestream:
     #    magic = _read32(bytestream)
     #    if magic != 2051:
@@ -32,10 +32,10 @@ def extract_images(filename,lx):
     #    buf = bytestream.read(rows * cols * num_images)
     #    data = numpy.frombuffer(buf, dtype=numpy.uint8)
     #    data = data.reshape(num_images, rows, cols, 1)
-    data=numpy.loadtxt(filename,dtype='uint8')
-    dim=data.shape[0]
-    data=data.reshape(dim,lx,lx,1) 
-    print data.shape
+    data = numpy.loadtxt(filename, dtype='uint8')
+    dim = data.shape[0]
+    data = data.reshape(dim,lx,lx,1)
+    print(data.shape)
     return data
 
 
@@ -50,18 +50,18 @@ def dense_to_one_hot(labels_dense, num_classes=10):
 
 def extract_labels(nlabels,filename, one_hot=False):
     """Extract the labels into a 1D uint8 numpy array [index]."""
-    print 'Extracting', filename,'bbbccicicicicib'
+    print('Extracting', filename,'bbbccicicicicib')
 
     labels=numpy.loadtxt(filename,dtype='uint8')
-      
+
     if one_hot:
-       print "LABELS ONE HOT"
-       print labels.shape
+       print("LABELS ONE HOT")
+       print(labels.shape)
        XXX=dense_to_one_hot(labels,nlabels)
-       print XXX.shape
+       print(XXX.shape)
        return dense_to_one_hot(labels,nlabels)
-    print "LABELS"
-    print labels.shape
+    print("LABELS")
+    print(labels.shape)
     return labels
 
 

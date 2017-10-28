@@ -4,6 +4,11 @@
 # Tutorial 1: Monte Carlo for the Ising model                                #
 ##############################################################################
 
+"""
+code to generate a markov chain monte carlo sampling of the square lattice
+ising model at a give temperature
+"""
+
 import random
 import argparse
 import matplotlib.pyplot as plt
@@ -60,20 +65,19 @@ for i in range(N_spins):
 neighbours = np.zeros((N_spins, 4), dtype=np.int)
 
 for i in range(N_spins):
-    # neighbour to the right:
-    neighbours[i, 0] = i + 1
+    neighbours[i, 0] = i + 1    # neighbour to the right
     if i%L == (L-1):
         neighbours[i, 0] = i + 1 - L
-    # upwards neighbour:
-    neighbours[i, 1] = i + L
+
+    neighbours[i, 1] = i + L    # upwards neighbour
     if i >= (N_spins-L):
         neighbours[i, 1] = i + L - N_spins
-    # neighbour to the left:
-    neighbours[i, 2] = i - 1
+
+    neighbours[i, 2] = i - 1    # neighbour to the left
     if i%L == 0:
         neighbours[i, 2] = i - 1 + L
-    # downwards neighbour:
-    neighbours[i, 3] = i - L
+
+    neighbours[i, 3] = i - L    # downwards neighbour
     if i <= (L-1):
         neighbours[i, 3] = i - L + N_spins
 # end of for loop
@@ -144,43 +148,40 @@ def writeConfigs(num, T):
 
 for T in T_list:
     print('\nT = %f' %T)
-
-    # open a file where observables will be recorded:
+    # File where observables will be recorded:
     fileName = 'data/ising2d_L%d_T%.4f.txt' %(L, T)
-    file_observables = open(fileName, 'w')
-
-    # perform equilibration sweeps:
-    for i in range(n_eqSweeps):
-        sweep()
-
-    # start doing measurements:
-    for i in range(n_bins):
-        for j in range(n_sweepsPerBin):
+    with file_observales as open(fileName, 'w'):
+        # Perform equilibration sweeps:
+        for i in range(n_eqSweeps):
             sweep()
-        # end loop over j
 
-        # Write the observables to file:
-        energy = getEnergy()
-        mag = getMag()
-        file_observables.write('%d \t %.8f \t %.8f \n' %(i, energy, mag))
+        # Start doing measurements:
+        for i in range(n_bins):
+            for j in range(n_sweepsPerBin):
+                sweep()
+            # end loop over j
 
-        # write the x, y data to file:
-        writeConfigs(i, T)
+            # Write the observables to file:
+            energy = getEnergy()
+            mag = getMag()
+            file_observables.write('%d \t %.8f \t %.8f \n' %(i, energy, mag))
 
-        if args.animate:
-            # Display the current spin configuration:
-            plt.clf()
-            plt.imshow(spins.reshape((L, L)), cmap=bw_cmap,
-                       norm=colors.BoundaryNorm([-1, 0, 1], bw_cmap.N))
-            plt.xticks([])
-            plt.yticks([])
-            plt.title('%d x %d Ising model, T = %.3f' %(L, L, T))
-            plt.pause(0.01)
-        # end if
+            # Write the x, y data to file:
+            writeConfigs(i, T)
 
-        if (i+1)%500 == 0:
-            print('  %d bins complete' %(i+1))
-    # end loop over i
+            # Display animation if args.animate is True
+            if args.animate:
+                # Display the current spin configuration:
+                plt.clf()
+                plt.imshow(spins.reshape((L, L)), cmap=bw_cmap,
+                           norm=colors.BoundaryNorm([-1, 0, 1], bw_cmap.N))
+                plt.xticks([])
+                plt.yticks([])
+                plt.title('%d x %d Ising model, T = %.3f' %(L, L, T))
+                plt.pause(0.01)
+            # end if
 
-    file_observables.close()
+            if (i+1)%500 == 0:
+                print('  %d bins complete' %(i+1))
+        # end loop over i
 # end loop over temperature

@@ -1,0 +1,146 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+DataSet	input_data.py	/^class DataSet(object):$/;"	c
+DataSets	input_data.py	/^    class DataSets(object):$/;"	c	function:read_data_sets
+Nord	conv.py	/^Nord = 20 # number of temperatures in the ordered phase$/;"	v
+Nord	conv_original.py	/^Nord=20 # number of temperatures in the ordered phase$/;"	v
+Ntemp	conv.py	/^Ntemp = 40 # number of different temperatures used in the training and testing data$/;"	v
+Ntemp	conv_original.py	/^Ntemp=40 # number of different temperatures used in the training and testing data$/;"	v
+O1	conv.py	/^O1 = layers(x, W_1,b_1)$/;"	v
+O1	conv_original.py	/^O1 = layers(x, W_1,b_1)$/;"	v
+O2	conv.py	/^O2 = layers(O1,W_2,b_2)$/;"	v
+O2	conv_original.py	/^O2=layers(O1,W_2,b_2)$/;"	v
+SOURCE_URL	input_data.py	/^SOURCE_URL = 'http:\/\/yann.lecun.com\/exdb\/mnist\/'$/;"	v
+W1s	conv.py	/^W1s = sess.run(W_1)$/;"	v
+W1s	conv_original.py	/^W1s=sess.run(W_1)$/;"	v
+W_1	conv.py	/^W_1 = weight_variable([lx*lx,hiddenunits1])$/;"	v
+W_1	conv_original.py	/^W_1 = weight_variable([lx*lx,hiddenunits1])$/;"	v
+W_2	conv.py	/^W_2 = weight_variable([hiddenunits1,numberlabels])$/;"	v
+W_2	conv_original.py	/^W_2 = weight_variable([hiddenunits1,numberlabels])$/;"	v
+__init__	input_data.py	/^    def __init__(self, images, labels, fake_data=False):$/;"	m	class:DataSet
+_read32	input_data.py	/^def _read32(bytestream):$/;"	f
+accuracy	conv.py	/^accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))  # measures the accuracy$/;"	v
+accuracy	conv_original.py	/^accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))  # measures the accuracy$/;"	v
+av	conv.py	/^        av = av + res$/;"	v
+av	conv.py	/^  av = 0.0$/;"	v
+av	conv.py	/^  av = av\/samples_per_T$/;"	v
+av	conv_original.py	/^        av=av+res $/;"	v
+av	conv_original.py	/^  av=0.0$/;"	v
+av	conv_original.py	/^  av=av\/samples_per_T$/;"	v
+b1s	conv.py	/^b1s = sess.run(b_1)$/;"	v
+b1s	conv_original.py	/^b1s=sess.run(b_1)$/;"	v
+b_1	conv.py	/^b_1 = bias_variable([hiddenunits1])$/;"	v
+b_1	conv_original.py	/^b_1 = bias_variable([hiddenunits1])$/;"	v
+b_2	conv.py	/^b_2 = bias_variable([numberlabels])$/;"	v
+b_2	conv_original.py	/^b_2 = bias_variable([numberlabels])$/;"	v
+batch	conv.py	/^        batch = (mnist.test.images[ii,:].reshape((1,lx*lx)),mnist.test.labels[ii,:].reshape((1,numberlabels)))$/;"	v
+batch	conv.py	/^  batch = (mnist.test.images[ii*samples_per_T:ii*samples_per_T+samples_per_T,:].reshape(samples_per_T,lx*lx), mnist.test.labels[ii*samples_per_T:ii*samples_per_T+samples_per_T,:].reshape((samples_per_T,numberlabels)) )$/;"	v
+batch	conv.py	/^ batch=(mnist.test.images[ii,:].reshape(1,lx*lx), mnist.test.labels[ii,:].reshape((1,numberlabels)))$/;"	v
+batch	conv_original.py	/^        batch=(mnist.test.images[ii,:].reshape((1,lx*lx)),mnist.test.labels[ii,:].reshape((1,numberlabels)))     $/;"	v
+batch	conv_original.py	/^  batch=(mnist.test.images[ii*samples_per_T:ii*samples_per_T+samples_per_T,:].reshape(samples_per_T,lx*lx), mnist.test.labels[ii*samples_per_T:ii*samples_per_T+samples_per_T,:].reshape((samples_per_T,numberlabels)) )$/;"	v
+beta	conv.py	/^beta = 1.0 # 'inverse temperature' of the sigmoid neuron$/;"	v
+beta	conv_original.py	/^beta=1.0 #``inverse temperature'' of the sigmoid neuron$/;"	v
+bias_variable	conv.py	/^def bias_variable(shape):$/;"	f
+bias_variable	conv_original.py	/^def bias_variable(shape):$/;"	f
+bsize	conv.py	/^bsize = 1500 # batch size for the gradient descent$/;"	v
+bsize	conv_original.py	/^bsize=1500$/;"	v
+c	plot.py	/^c = plt.cm.spectral((1)\/4.,1)$/;"	v
+c	plot.py	/^c = plt.cm.spectral((2)\/4.,1)$/;"	v
+c	plot.py	/^c = plt.cm.spectral((3)\/4.,1)$/;"	v
+correct_prediction	conv.py	/^correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1)) # checks the correct predictions by comparing the results of the neural net with the labels$/;"	v
+correct_prediction	conv_original.py	/^correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1)) # checks the correct predictions by comparing the results of the neural net with the labels$/;"	v
+cross_entropy	conv.py	/^cross_entropy = tf.reduce_mean(-y_*tf.log(tf.clip_by_value(y_conv,1e-10,1.0) )-(1.0-y_)*tf.log(tf.clip_by_value(1.0-y_conv,1e-10,1.0))) +(lamb)*(tf.nn.l2_loss(W_1)+tf.nn.l2_loss(W_2))$/;"	v
+cross_entropy	conv_original.py	/^cross_entropy = tf.reduce_mean(-y_*tf.log(tf.clip_by_value(y_conv,1e-10,1.0) )-(1.0-y_)*tf.log(tf.clip_by_value(1.0-y_conv,1e-10,1.0))) +(lamb)*(tf.nn.l2_loss(W_1)+tf.nn.l2_loss(W_2))$/;"	v
+dataII	plot.py	/^dataII=np.loadtxt('acc.dat')$/;"	v
+dataII	plot.py	/^dataII=np.loadtxt('nnout.dat')$/;"	v
+dense_to_one_hot	input_data.py	/^def dense_to_one_hot(labels_dense, num_classes=10):$/;"	f
+epochs_completed	input_data.py	/^    def epochs_completed(self):$/;"	m	class:DataSet
+extract_images	input_data.py	/^def extract_images(filename,lx):$/;"	f
+extract_labels	input_data.py	/^def extract_labels(nlabels,filename, one_hot=False):$/;"	f
+f	conv.py	/^f = open('acc.dat', 'w')$/;"	v
+f	conv.py	/^f = open('hidden_input.dat', 'w')$/;"	v
+f	conv.py	/^f = open('nnout.dat', 'w')$/;"	v
+f	conv_original.py	/^f = open('acc.dat', 'w')$/;"	v
+f	conv_original.py	/^f = open('nnout.dat', 'w')$/;"	v
+gzip	input_data.py	/^import gzip$/;"	i
+hiddenunits1	conv.py	/^hiddenunits1 = 100 # number of hidden units in the hidden layer$/;"	v
+hiddenunits1	conv_original.py	/^hiddenunits1=100 # number of hidden unites in the hidden layer$/;"	v
+hidlay	conv.py	/^def hidlay(x,W,b):$/;"	f
+hidlay	conv_original.py	/^def hidlay(x,W,b):$/;"	f
+hl	conv.py	/^hl = hidlay(x,W_1,b_1)$/;"	v
+hl	conv_original.py	/^hl=hidlay(x,W_1,b_1)$/;"	v
+ii	conv.py	/^        ii = ii + 1$/;"	v
+ii	conv.py	/^ii = 0$/;"	v
+ii	conv_original.py	/^        ii=ii+1 $/;"	v
+ii	conv_original.py	/^ii=0$/;"	v
+images	input_data.py	/^    def images(self):$/;"	m	class:DataSet
+input_data	conv.py	/^import input_data$/;"	i
+input_data	conv_original.py	/^import input_data$/;"	i
+labels	input_data.py	/^    def labels(self):$/;"	m	class:DataSet
+lamb	conv.py	/^lamb = 0.001 # regularization parameter$/;"	v
+lamb	conv_original.py	/^lamb=0.001 # regularization parameter $/;"	v
+layers	conv.py	/^def layers(x, W,b):$/;"	f
+layers	conv_original.py	/^def layers(x, W,b):$/;"	f
+leg	plot.py	/^leg = plt.legend(loc='best',numpoints=1,markerscale=1.0,fontsize=15,labelspacing=0.1)$/;"	v
+lx	conv.py	/^lx = 30$/;"	v
+lx	conv_original.py	/^lx=30$/;"	v
+mag	conv.py	/^ mag=np.sum((2*batch[0]-1 ))\/(lx*lx)$/;"	v
+matplotlib	conv.py	/^import matplotlib.pyplot as plt$/;"	i
+matplotlib	conv_original.py	/^import matplotlib.pyplot as plt$/;"	i
+matplotlib	plot.py	/^import matplotlib.pyplot as plt$/;"	i
+maybe_download	input_data.py	/^def maybe_download(filename, work_directory):$/;"	f
+mnist	conv.py	/^mnist = input_data.read_data_sets(numberlabels,lx,'txt', one_hot=True)$/;"	v
+mnist	conv_original.py	/^mnist = input_data.read_data_sets(numberlabels,lx,'txt', one_hot=True)$/;"	v
+next_batch	input_data.py	/^    def next_batch(self, batch_size, fake_data=False):$/;"	m	class:DataSet
+niter	conv.py	/^niter = 4000 # number of iterations$/;"	v
+niter	conv_original.py	/^niter=4000$/;"	v
+np	conv.py	/^import numpy as np$/;"	i
+np	conv_original.py	/^import numpy as np$/;"	i
+np	plot.py	/^import numpy as np$/;"	i
+num_examples	input_data.py	/^    def num_examples(self):$/;"	m	class:DataSet
+numberlabels	conv.py	/^numberlabels = 2 # Number of phases under consideration (2 for the Ising modelon the square lattice)$/;"	v
+numberlabels	conv_original.py	/^numberlabels=2 # Number of phases under consideration (2 for the Ising model on the square lattice) $/;"	v
+numpy	input_data.py	/^import numpy$/;"	i
+optimizer	conv.py	/^optimizer = tf.train.AdamOptimizer(0.0005)$/;"	v
+optimizer	conv_original.py	/^optimizer= tf.train.AdamOptimizer(0.0005)$/;"	v
+os	input_data.py	/^import os$/;"	i
+output	conv.py	/^ output=sess.run(hl,feed_dict={x:batch[0]})$/;"	v
+plt	conv.py	/^import matplotlib.pyplot as plt$/;"	i
+plt	conv_original.py	/^import matplotlib.pyplot as plt$/;"	i
+plt	plot.py	/^import matplotlib.pyplot as plt$/;"	i
+read_data_sets	input_data.py	/^def read_data_sets(nlabels,lx, train_dir, fake_data=False, one_hot=False ):$/;"	f
+res	conv.py	/^        res = sess.run(y_conv,feed_dict={x: batch[0], y_: batch[1]})$/;"	v
+res	conv_original.py	/^        res=sess.run(y_conv,feed_dict={x: batch[0], y_: batch[1]})$/;"	v
+samples_per_T	conv.py	/^samples_per_T = 250 # number of samples per temperature value in the testing set$/;"	v
+samples_per_T	conv_original.py	/^samples_per_T=250 # number of samples per temperature value in the testing set$/;"	v
+sess	conv.py	/^sess = tf.Session()$/;"	v
+sess	conv_original.py	/^sess = tf.Session()$/;"	v
+sys	conv.py	/^import sys$/;"	i
+sys	conv_original.py	/^import sys$/;"	i
+tf	conv.py	/^import tensorflow as tf$/;"	i
+tf	conv_original.py	/^import tensorflow as tf$/;"	i
+tlist	conv.py	/^tlist =[ 1.0000000000000000,1.0634592657106510,1.1269185314213019,1.1903777971319529,1.2538370628426039,1.3172963285532548,1.3807555942639058,1.4442148599745568,1.5076741256852078,1.5711333913958587,1.6345926571065097,1.6980519228171607,1.7615111885278116,1.8249704542384626,1.8884297199491136,1.9518889856597645,2.0153482513704155,2.0788075170810667,2.1422667827917179,2.2057260485023691,2.3326445799236715,2.3961038456343227,2.4595631113449739,2.5230223770556250,2.5864816427662762,2.6499409084769274,2.7134001741875786,2.7768594398982298,2.8403187056088810,2.9037779713195322,2.9672372370301834,3.0306965027408346,3.0941557684514858,3.1576150341621370,3.2210742998727881,3.2845335655834393,3.3479928312940905,3.4114520970047417,3.4749113627153929,3.5383706284260401]$/;"	v
+tlist	conv_original.py	/^tlist=[1.0000000000000000,1.0634592657106510,1.1269185314213019,1.1903777971319529,1.2538370628426039,1.3172963285532548,1.3807555942639058,1.4442148599745568,1.5076741256852078,1.5711333913958587,1.6345926571065097,1.6980519228171607,1.7615111885278116,1.8249704542384626,1.8884297199491136,1.9518889856597645,2.0153482513704155,2.0788075170810667,2.1422667827917179,2.2057260485023691,2.3326445799236715,2.3961038456343227,2.4595631113449739,2.5230223770556250,2.5864816427662762,2.6499409084769274,2.7134001741875786,2.7768594398982298,2.8403187056088810,2.9037779713195322,2.9672372370301834,3.0306965027408346,3.0941557684514858,3.1576150341621370,3.2210742998727881,3.2845335655834393,3.3479928312940905,3.4114520970047417,3.4749113627153929,3.5383706284260401]$/;"	v
+train_accuracy	conv.py	/^  train_accuracy = sess.run(accuracy,feed_dict={$/;"	v
+train_accuracy	conv_original.py	/^  train_accuracy = sess.run(accuracy,feed_dict={$/;"	v
+train_step	conv.py	/^train_step = optimizer.minimize(cross_entropy)$/;"	v
+train_step	conv_original.py	/^train_step = optimizer.minimize(cross_entropy)$/;"	v
+urllib	input_data.py	/^import urllib$/;"	i
+weight_variable	conv.py	/^def weight_variable(shape):$/;"	f
+weight_variable	conv_original.py	/^def weight_variable(shape):$/;"	f
+x	conv.py	/^x = tf.placeholder("float", shape=[None, lx*lx]) # spin configuration$/;"	v
+x	conv_original.py	/^x = tf.placeholder("float", shape=[None, lx*lx]) # spin configuration$/;"	v
+x	plot.py	/^x=[2.26918,2.26918]$/;"	v
+x	plot.py	/^x=dataII[:,1]$/;"	v
+y	plot.py	/^y=[0,1]$/;"	v
+y	plot.py	/^y=[0.6,1]$/;"	v
+y1	plot.py	/^y1=dataII[:,2]$/;"	v
+y2	plot.py	/^y2=dataII[:,3]$/;"	v
+y_	conv.py	/^y_ = tf.placeholder("float", shape=[None, numberlabels]) # label in the form of a one hot vector$/;"	v
+y_	conv_original.py	/^y_ = tf.placeholder("float", shape=[None, numberlabels]) # label in the form of a one hot vector$/;"	v
+y_conv	conv.py	/^y_conv=O2$/;"	v
+y_conv	conv_original.py	/^y_conv=O2$/;"	v
